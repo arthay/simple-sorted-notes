@@ -1,18 +1,79 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>simple-sorted-notes</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-    <meta property="og:image" content="/og-image.png" />
+    <title>Vanilla JS Todo List</title>
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="container">
+      <header>
+        <h1>Minimalist Todo</h1>
+        <p>Stay organized with elegance and simplicity</p>
+      </header>
+
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search tasks...">
+        <div class="search-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+      </div>
+
+      <form id="todoForm">
+        <input type="text" id="todoInput" placeholder="Add a new task...">
+        <div class="form-expanded" id="formExpanded">
+          <div class="priority-selector">
+            <label for="prioritySelect">Priority</label>
+            <select id="prioritySelect">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <button type="submit" id="addButton" disabled>Add Task</button>
+        </div>
+      </form>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label>Status</label>
+          <select id="statusFilter">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>Priority</label>
+          <select id="priorityFilter">
+            <option value="all">All Priorities</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>Sort By</label>
+          <select id="sortBy">
+            <option value="date">Date Added</option>
+            <option value="priority">Priority</option>
+            <option value="alphabetical">Alphabetical</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="todoList" class="todo-list"></div>
+
+      <div id="pagination" class="pagination"></div>
+
+      <div id="stats" class="stats"></div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
