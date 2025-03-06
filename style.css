@@ -1,4 +1,3 @@
-
 /* Base styles */
 * {
   margin: 0;
@@ -16,7 +15,7 @@ body {
 }
 
 .container {
-  max-width: 32rem;
+  max-width: 48rem;
   margin: 0 auto;
 }
 
@@ -199,70 +198,90 @@ header p {
   color: #4b5563;
 }
 
-/* Todo item styles */
-.todo-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+/* Table styles */
+.table-container {
+  background-color: white;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
 }
 
-.todo-item {
-  position: relative;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-bottom: 0.75rem;
-  transition: all 0.2s ease;
-  animation: fadeIn 0.3s ease-out;
-  cursor: grab;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
 }
 
-.todo-item:hover {
-  transform: scale(1.01);
+thead {
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.todo-item.completed {
+th {
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  color: #4b5563;
+  font-size: 0.875rem;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr.completed {
   opacity: 0.6;
 }
 
-.todo-item-low {
-  background-color: #eff6ff;
-  border: 1px solid #dbeafe;
+tr.completed td:nth-child(2) {
+  text-decoration: line-through;
+  color: #6b7280;
 }
 
-.todo-item-medium {
-  background-color: #fffbeb;
-  border: 1px solid #fef3c7;
+.todo-row {
+  transition: all 0.2s ease;
+  animation: fadeIn 0.3s ease-out;
 }
 
-.todo-item-high {
-  background-color: #fff1f2;
-  border: 1px solid #fee2e2;
+.todo-row:hover {
+  background-color: #f9fafb;
 }
 
-/* Drag and drop styles */
-.todo-item.dragging {
+.todo-row.dragging {
   opacity: 0.5;
+  background-color: #f3f4f6;
   cursor: grabbing;
-  transform: scale(1.03);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-.todo-item.drag-over {
+.todo-row.drag-over {
   border-top: 2px dashed #6366f1;
-  padding-top: calc(1rem - 2px);
-  position: relative;
 }
 
-.todo-item-content {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+.todo-row-low {
+  background-color: #eff6ff;
 }
 
-.todo-item-left {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.todo-row-medium {
+  background-color: #fffbeb;
+}
+
+.todo-row-high {
+  background-color: #fff1f2;
+}
+
+.th-status, .th-actions {
+  width: 80px;
+}
+
+.th-priority, .th-date {
+  width: 120px;
 }
 
 .todo-checkbox {
@@ -272,32 +291,11 @@ header p {
   cursor: pointer;
 }
 
-.todo-text-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.todo-text-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.todo-text {
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.todo-item.completed .todo-text {
-  text-decoration: line-through;
-  color: #6b7280;
-}
-
 .priority-badge {
   font-size: 0.75rem;
   padding: 0.125rem 0.5rem;
   border-radius: 9999px;
+  display: inline-block;
 }
 
 .priority-badge-low {
@@ -335,6 +333,33 @@ header p {
 .delete-btn svg {
   width: 1rem;
   height: 1rem;
+}
+
+.empty-state {
+  padding: 3rem 0;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.empty-state-icon {
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state-icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto;
+}
+
+.empty-state-text {
+  color: #6b7280;
+}
+
+.empty-state-subtext {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
 }
 
 /* Pagination styles */
@@ -381,32 +406,33 @@ header p {
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Empty state */
-.empty-state {
-  text-align: center;
-  padding: 3rem 0;
-  animation: fadeIn 0.3s ease-out;
+.hidden {
+  display: none;
 }
 
-.empty-state-icon {
-  color: #9ca3af;
-  margin-bottom: 0.5rem;
+/* Responsive adjustments for tables */
+@media (max-width: 640px) {
+  .th-date {
+    display: none;
+  }
+  
+  td:nth-child(4) {
+    display: none;
+  }
+  
+  .th-priority {
+    width: 90px;
+  }
 }
 
-.empty-state-icon svg {
-  width: 2.5rem;
-  height: 2.5rem;
-  margin: 0 auto;
-}
-
-.empty-state-text {
-  color: #6b7280;
-}
-
-.empty-state-subtext {
-  font-size: 0.875rem;
-  color: #9ca3af;
-  margin-top: 0.25rem;
+@media (max-width: 480px) {
+  .th-priority {
+    display: none;
+  }
+  
+  td:nth-child(3) {
+    display: none;
+  }
 }
 
 /* Animations */
