@@ -213,6 +213,7 @@ header p {
   margin-bottom: 0.75rem;
   transition: all 0.2s ease;
   animation: fadeIn 0.3s ease-out;
+  cursor: grab;
 }
 
 .todo-item:hover {
@@ -236,6 +237,20 @@ header p {
 .todo-item-high {
   background-color: #fff1f2;
   border: 1px solid #fee2e2;
+}
+
+/* Drag and drop styles */
+.todo-item.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+  transform: scale(1.03);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.todo-item.drag-over {
+  border-top: 2px dashed #6366f1;
+  padding-top: calc(1rem - 2px);
+  position: relative;
 }
 
 .todo-item-content {
